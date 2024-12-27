@@ -56,7 +56,9 @@ class ImagePickSheet extends StatelessWidget {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    onSelectOption!(ImageType.camera);
+                    if(onSelectOption!=null){
+                      onSelectOption!(ImageType.camera);
+                    }
                   },
                   child: _imageTypeContainer(
                     context,
@@ -69,7 +71,9 @@ class ImagePickSheet extends StatelessWidget {
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   onTap: () {
-                    onSelectOption!(ImageType.gallery);
+                    if(onSelectOption!=null){
+                      onSelectOption!(ImageType.gallery);
+                    }
                   },
                   child: _imageTypeContainer(
                     context,
