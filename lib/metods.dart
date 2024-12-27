@@ -96,7 +96,8 @@ Future<bool> imageSize(XFile file) async {
 }
 
 void showSnackBar(
-    String message, {
+    String message,
+    BuildContext context,{
       SnackbarType type = SnackbarType.success,
       void Function()? onErrorDialogClick,
     }) async {
@@ -121,7 +122,7 @@ void showSnackBar(
       borderWidth: 1,
       backgroundColor:
       type == SnackbarType.success ? Colors.green : Colors.red,
-      colorText: Theme.of(Get.context!).colorScheme.surface,
+      colorText: Theme.of(context).colorScheme.surface,
       isDismissible: true,
       animationDuration: const Duration(milliseconds: 500),
       duration: const Duration(seconds: 3),

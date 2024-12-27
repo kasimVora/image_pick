@@ -142,10 +142,10 @@ class ImagePickSheet extends StatelessWidget {
                 if(
                 imageType == ImageType.gallery
                 ){
-                  Get.context!.loading.show();
-                  await  MediaPicker(context: Get.context!,maxLimit: limit ?? 1).showPicker()
+                  context.loading.show();
+                  await  MediaPicker(context: context,maxLimit: limit ?? 1).showPicker()
                       .then((images) async{
-                    Get.context!.loading.hide();
+                    context.loading.hide();
 
                     if ( images!= null && images.isNotEmpty) {
 
@@ -167,6 +167,7 @@ class ImagePickSheet extends StatelessWidget {
                           } else {
                             showSnackBar(
                               "Sorry! Maximum image size should be 15 MB.",
+                              context,
                               type: SnackbarType.failure,
                             );
                             break;
@@ -174,6 +175,7 @@ class ImagePickSheet extends StatelessWidget {
                         } else {
                           showSnackBar(
                             'Please upload image format like jpg, jpeg, png, heic, etc.',
+                            context,
                             type: SnackbarType.failure,
                           );
                         }
@@ -182,18 +184,18 @@ class ImagePickSheet extends StatelessWidget {
 
                     }
                   }).catchError((_){
-                    Get.context!.loading.hide();
+                    context.loading.hide();
                   });
                 }
                 else{
-                  Get.context!.loading.show();
+                  context.loading.show();
                   final XFile? imageFile = await ImagePicker().pickImage(
                     source: imageType == ImageType.gallery
                         ? ImageSource.gallery
                         : ImageSource.camera,
                     imageQuality: 65,
                   );
-                  Get.context!.loading.hide();
+                  context.loading.hide();
                   if (imageFile != null) {
                     if (imageFile.path.toLowerCase().endsWith("jpg") ||
                         imageFile.path.toLowerCase().endsWith("png") ||
@@ -206,12 +208,14 @@ class ImagePickSheet extends StatelessWidget {
                       } else {
                         showSnackBar(
                           "Sorry! Maximum image size should be 15 MB.",
+                          context,
                           type: SnackbarType.failure,
                         );
                       }
                     } else {
                       showSnackBar(
                         'Please upload image format like jpg, jpeg, png, heic, etc.',
+                        context,
                         type: SnackbarType.failure,
                       );
                     }

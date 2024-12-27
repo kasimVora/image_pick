@@ -220,7 +220,7 @@ Future<List<XFile>> compressed(List<File> files, BuildContext context) async {
   List<XFile> comp = [];
 
   //if(files.first.fileType == MediaType.image){
-  Get.context!.loading.show();
+  context.loading.show();
   // }
 
   try {
